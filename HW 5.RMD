@@ -1,0 +1,410 @@
+---
+title: "STA 32 - HW 5"
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+### Problem I
+### (a)
+```{r, echo = FALSE}
+day.number = 0
+current.day = 0
+while(current.day != "rain"){
+  day.number = day.number + 1
+  current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+}
+
+day.number
+current.day
+```
+
+### (b)
+```{r, echo = FALSE}
+all.the.days  = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+hist(all.the.days)
+```
+
+### (c)
+```{r, echo = TRUE}
+#It looks like half of the graph of normal distribution where the frequency of the number of days decreases as the number increases.
+```
+
+### (d)
+```{r, echo = FALSE}
+all.the.days  = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+A = mean(all.the.days)
+B = sd(all.the.days)
+v.return = c(A,B)
+names(v.return) = c("mean","standard deviation")
+v.return
+```
+
+### (e)
+```{r, echo = FALSE}
+all.the.days = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+sum(all.the.days == 15)/length(all.the.days)
+
+```
+
+### (f)
+```{r, echo = FALSE}
+all.the.days = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+sum(all.the.days >= 10 & all.the.days <= 15)/sum(all.the.days >= 10)
+
+```
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+glasspeople.number
+```
+
+### (b)
+```{r, echo = FALSE}
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+hist(all.the.glasspeople)
+```
+
+### (c)
+```{r, echo = FALSE}
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+median(all.the.glasspeople)
+```
+
+### (d)
+```{r, echo = FALSE}
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+A = mean(all.the.glasspeople)
+B = sd(all.the.glasspeople)
+v.return = c(A,B)
+names(v.return) = c("mean","sd")
+v.return
+```
+
+### (e)
+```{r, echo = FALSE}
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+sum(all.the.glasspeople >= 11)/length(all.the.glasspeople)
+
+```
+
+### (f)
+```{r, echo = FALSE}
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+sum(all.the.glasspeople == 15)/sum(all.the.glasspeople >= 11)
+
+```
+
+### Problem III
+### (a)
+```{r, echo = FALSE}
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+A = mean(X)
+B = sd(X)
+C = mean(Y)
+D = sd(Y)
+v.return = c(A,B,C,D)
+names(v.return) = c("meanX","sdX","meanY","sdY")
+v.return
+```
+
+### (b)
+```{r, echo = FALSE}
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+A = mean(W)
+B = sd(W)
+v.return = c(A,B)
+names(v.return) = c("mean","standard deviation")
+v.return
+```
+
+### (c)
+```{r, echo = FALSE}
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+sum(W >= 4)/length(W)
+```
+
+### (d)
+```{r, echo = FALSE}
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+A = mean(W)
+B = sd(W)
+v.return = c(abs(A),abs((26)^(1/2) - B))
+names(v.return) = c("error in meanW","error in sdW")
+v.return
+```
+
+
+## APPENDIX OF CODE
+```
+day.number = 0
+current.day = 0
+while(current.day != "rain"){
+  day.number = day.number + 1
+  current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+}
+
+day.number
+current.day
+all.the.days  = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+hist(all.the.days)
+all.the.days  = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+A = mean(all.the.days)
+B = sd(all.the.days)
+v.return = c(A,B)
+names(v.return) = c("mean","standard deviation")
+v.return
+all.the.days = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+sum(all.the.days == 15)/length(all.the.days)
+all.the.days = sapply(1:20000,function(i){
+  day.number = 0
+  current.day = 0 
+  while(current.day != "rain"){
+    day.number = day.number + 1
+    current.day = sample(c("rain","norain"), 1,prob = c(0.1,0.9))
+  }
+  how.many = day.number
+  return(how.many)
+})
+sum(all.the.days >= 10 & all.the.days <= 15)/sum(all.the.days >= 10)
+glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+glasspeople.number
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+hist(all.the.glasspeople)
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+median(all.the.glasspeople)
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+A = mean(all.the.glasspeople)
+B = sd(all.the.glasspeople)
+v.return = c(A,B)
+names(v.return) = c("mean","sd")
+v.return
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+sum(all.the.glasspeople >= 11)/length(all.the.glasspeople)
+all.the.glasspeople = sapply(1:20000, function(i){
+  glasspeople.number = 0
+current.glasspeople = 0
+glasspeople.counter = 0
+while(glasspeople.counter != 5){
+  glasspeople.number = glasspeople.number + 1
+  current.glasspeople = sample(c("glass","noglass"), 1,prob = c(0.4,0.6))
+  glasspeople.counter = glasspeople.counter + (current.glasspeople == "glass")
+}
+how.many = glasspeople.number
+return(how.many)
+})
+sum(all.the.glasspeople == 15)/sum(all.the.glasspeople >= 11)
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+A = mean(X)
+B = sd(X)
+C = mean(Y)
+D = sd(Y)
+v.return = c(A,B,C,D)
+names(v.return) = c("meanX","sdX","meanY","sdY")
+v.return
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+A = mean(W)
+B = sd(W)
+v.return = c(A,B)
+names(v.return) = c("mean","standard deviation")
+v.return
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+sum(W >= 4)/length(W)
+X = rnorm(10000, mean = 2, sd = 1)
+Y = rnorm(10000, mean = -2, sd = 5)
+W = X + Y
+A = mean(W)
+B = sd(W)
+v.return = c(abs(A),abs((26)^(1/2) - B))
+names(v.return) = c("error in meanW","error in sdW")
+v.return
+```

@@ -1,0 +1,80 @@
+---
+title: "STA 32 - HW7 "
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+### Problem I
+### (a)
+```{r, echo = FALSE}
+crime <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/Dataset/crime.csv")
+dip <- crime$dip
+rate <- crime$rate
+plot(rate ~ dip)
+title("Linear Relationship between Crime Rate and Diploma")
+```
+
+### (b)
+```{r, echo = FALSE}
+A = lm(crime$rate ~ crime$dip)
+plot(rate ~ dip)
+title("Linear Relationship between Crime Rate and Diploma")
+abline(A,lwd = 2)
+```
+
+### (c)
+```{r, echo = FALSE}
+round(A$coefficients[2],digits = 3)
+```
+#when the percentage with high school diploma increases by 1 percent, crime rate would be expected to decrease by 170.575 per 100000 residents.This problem does not have a practical interception.
+
+### (d)
+```{r, echo = FALSE}
+summary(crime)
+ifelse(crime$rate >= 8840 | crime$rate <= 5020 | crime$dip >= 82.25 | crime$dip <= 76,"Outliers","Not Outliers")
+```
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+qqnorm(A$residuals)
+qqline(A$residuals)
+```
+#It looks like not normally distributed because it presents as a straight line.
+
+### (b)
+```{r, echo = FALSE}
+plot(A$fitted.values, A$residuals, xlab = "Fitted Values", ylab = "errors", main = "Checking for constancy of variance of the errors")
+```
+#Because of outliers, the variance of the errors is not constant.
+
+### (c)
+```{r, echo = FALSE}
+confint(A, level = 0.95)
+```
+#we are 95% confident that when the percentage with high school diploma increases by 1 percent, crime rate would be expected to decrease by 170.575 per 100000 residents.
+
+### (d)
+```{r, echo = TRUE}
+#Yes, because as crime$dip increases, intercept also increases.
+```
+
+## APPENDIX OF CODE
+```
+crime <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/Dataset/crime.csv")
+dip <- crime$dip
+rate <- crime$rate
+plot(rate ~ dip)
+title("Linear Relationship between Crime Rate and Diploma")
+A = lm(crime$rate ~ crime$dip)
+plot(rate ~ dip)
+title("Linear Relationship between Crime Rate and Diploma")
+abline(A,lwd = 2)
+round(A$coefficients[2],digits = 3)
+summary(crime)
+ifelse(crime$rate >= 8840 | crime$rate <= 5020 | crime$dip >= 82.25 | crime$dip <= 76,"Outliers","Not Outliers")
+qqnorm(A$residuals)
+qqline(A$residuals)
+plot(A$fitted.values, A$residuals, xlab = "Fitted Values", ylab = "errors", main = "Checking for constancy of variance of the errors")
+confint(A, level = 0.95)
+```

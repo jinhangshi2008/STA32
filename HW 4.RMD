@@ -1,0 +1,303 @@
+---
+title: "STA 32 - HW 4"
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+### Problem I
+### (a)
+```{r, echo = FALSE}
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+sum(one.student == "NT")
+```
+
+### (b)
+```{r, echo = FALSE}
+n = 1000000
+many.num.noturn = sapply(1:n,function(i){
+	the.sample = sample( c("HW","None"), 40, replace = TRUE, prob = c(0.95,0.05))
+	num.noturn = sum(the.sample == "None")
+	return(num.noturn)
+})
+hist(many.num.noturn)
+```
+
+### (c)
+```{r, echo = TRUE}
+#No, it is not symmetric since the histogram shows.
+```
+
+### (d)
+```{r, echo = FALSE}
+n = 1000000
+many.num.noturn = sapply(1:n,function(i){
+	the.sample = sample( c("HW","None"), 40, replace = TRUE, prob = c(0.95,0.05))
+	num.noturn = sum(the.sample == "None")
+	return(num.noturn)
+})
+table(many.num.noturn)
+```
+#2 is the most frequent occuring number.
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+})
+A = sum(many.students == "NT")
+v.return = c(A/n,sd(many.students == "NT"))
+names(v.return) = c("mean","standard deviation" )
+v.return
+```
+
+### (b)
+```{r, echo = FALSE}
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+sum(many.students == 0)/n
+```
+
+### (c)
+```{r, echo = FALSE}
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+A = sum(many.students == 0)
+B = sum(many.students == 1)
+1-((A + B)/n)
+```
+
+### (d)
+```{r, echo = FALSE}
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+median(many.students)
+```
+
+### Problem III
+### (a)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+hist(lynx)
+v.return = c(mean(lynx),var(lynx))
+names(v.return) = c("mean","variance")
+v.return
+```
+#This data does not look normally distributed.
+
+### (b)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+the.sample = sample(lynx,10)
+mean(the.sample)
+```
+
+### (c)
+```{r, echo = FALSE}
+n = 1000000
+many.samples = sapply(1:n, function(i){
+  lynx = as.numeric(lynx)
+  the.sample = sample(lynx,10)
+  A = mean(the.sample)
+  return(A)
+})
+v.return = c(mean(many.samples),sd(many.samples))
+names(v.return) = c("mean","standard deviation")
+v.return
+```
+
+### (d)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+n = 1000000
+many.samples = sapply(1:n, function(i){
+  lynx = as.numeric(lynx)
+  the.sample = sample(lynx,10)
+  A = mean(the.sample)
+  return(A)
+})
+B = mean(lynx)
+C = sd(lynx)
+v.return = c(abs(B - mean(many.samples)),abs(C - sd(many.samples)))
+names(v.return) = c("difference in mean","difference in standard deviation")
+v.return
+```
+
+### Problem IV
+### (a)
+```{r, echo = FALSE}
+n = 1000000
+many.samples = sapply(1:n, function(i){
+  lynx = as.numeric(lynx)
+  the.sample = sample(lynx,10)
+  A = mean(the.sample)
+  return(A)
+})
+hist(many.samples)
+```
+
+#Less skewness
+
+### (b)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+the.sample = sample(lynx,50)
+C = mean(the.sample)
+D = sd(the.sample)
+v.return = c(C,D)
+names(v.return) = c("mean","standard deviation")
+v.return
+```
+
+### (c)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+n = 1000000
+many.samples1 = sapply(1:n, function(i){
+  the.sample1 = sample(lynx,50)
+  A = mean(the.sample1)
+  return(A)
+})
+v.return1 = c(mean(many.samples1),sd(many.samples1))
+names(v.return1) = c("mean","standard deviation")
+v.return1
+many.samples2 = sapply(1:n, function(i){
+  the.sample2 = sample(lynx,10)
+  B = mean(the.sample2)
+  return(B)
+})
+v.return2 = c((mean(many.samples1) - mean(many.samples2)),(sd(many.samples1) - sd(many.samples2)))
+names(v.return2) = c("difference in mean","difference in standard deviation")
+v.return2
+```
+#mean stays approximately the same while standard deviation decreases dramatically.
+
+### (d)
+```{r, echo = FALSE}
+lynx = as.numeric(lynx)
+n = 1000000
+many.samples1 = sapply(1:n, function(i){
+  the.sample1 = sample(lynx,50)
+  A = mean(the.sample1)
+  return(A)
+})
+hist(lynx)
+```
+
+#the slope of the histogram is decreasing. Therefore, the shape is like a mountain from the top to the bottom.
+
+## APPENDIX OF CODE
+```
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+sum(one.student == "NT")
+n = 1000000
+many.num.noturn = sapply(1:n,function(i){
+	the.sample = sample( c("HW","None"), 40, replace = TRUE, prob = c(0.95,0.05))
+	num.noturn = sum(the.sample == "None")
+	return(num.noturn)
+})
+hist(many.num.noturn)
+n = 1000000
+many.num.noturn = sapply(1:n,function(i){
+	the.sample = sample( c("HW","None"), 40, replace = TRUE, prob = c(0.95,0.05))
+	num.noturn = sum(the.sample == "None")
+	return(num.noturn)
+})
+table(many.num.noturn)
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+})
+A = sum(many.students == "NT")
+v.return = c(A/n,sd(many.students == "NT"))
+names(v.return) = c("mean","standard deviation" )
+v.return
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+sum(many.students == 0)/n
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+A = sum(many.students == 0)
+B = sum(many.students == 1)
+1-((A + B)/n)
+n = 1000000
+one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+many.students = sapply(1:n, function(i){
+  one.student = sample(c("T","NT"), prob = c(0.95,0.05),40,replace = TRUE)
+  A = sum(one.student == "NT")
+  return(A)
+  })
+median(many.students)
+lynx = as.numeric(lynx)
+hist(lynx)
+v.return = c(mean(lynx),var(lynx))
+names(v.return) = c("mean","variance")
+v.return
+lynx = as.numeric(lynx)
+the.sample = sample(lynx,10)
+mean(the.sample)
+n = 1000000
+many.samples = sapply(1:n, function(i){
+  lynx = as.numeric(lynx)
+  the.sample = sample(lynx,10)
+  A = mean(the.sample)
+  return(A)
+})
+v.return = c(mean(many.samples),sd(many.samples))
+names(v.return) = c("mean","standard deviation")
+v.return
+lynx = as.numeric(lynx)
+n = 1000000
+many.samples1 = sapply(1:n, function(i){
+  the.sample1 = sample(lynx,50)
+  A = mean(the.sample1)
+  return(A)
+})
+v.return1 = c(mean(many.samples1),sd(many.samples1))
+names(v.return1) = c("mean","standard deviation")
+v.return1
+many.samples2 = sapply(1:n, function(i){
+  the.sample2 = sample(lynx,10)
+  B = mean(the.sample2)
+  return(B)
+})
+v.return2 = c((mean(many.samples1) - mean(many.samples2)),(sd(many.samples1) - sd(many.samples2)))
+names(v.return2) = c("difference in mean","difference in standard deviation")
+v.return2
+lynx = as.numeric(lynx)
+n = 1000000
+many.samples1 = sapply(1:n, function(i){
+  the.sample1 = sample(lynx,50)
+  A = mean(the.sample1)
+  return(A)
+})
+hist(lynx)
+```

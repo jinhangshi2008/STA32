@@ -1,0 +1,150 @@
+---
+  title: "STA 32 - HW 1"
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+  ### Problem I
+  ### (a)
+  ```{r, echo = FALSE}
+ErinsFitbit <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/ErinsFitbit.csv")
+names(ErinsFitbit)
+```
+
+### (b)
+```{r, echo = FALSE}
+rownames(ErinsFitbit)
+```
+
+### (c)* `summary()`
+```{r, echo = FALSE}
+summary(ErinsFitbit)
+```
+#It gives the data analysis for numerical columns, while gives the numbers of the times each category appears for categorical columns.
+
+### (d)
+```{r, echo = FALSE}
+#ErinsFitbit$Steps
+mean(ErinsFitbit$Steps)
+the.mean = mean(ErinsFitbit$Steps)
+```
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+Z = aggregate(Steps ~ Day, data = ErinsFitbit, mean)
+names(Z) = "mean"
+Z
+```
+
+### (b)
+```{r, echo = FALSE}
+X = aggregate(Sleep ~ Day, data = ErinsFitbit, mean)
+names(X) = "mean"
+X
+```
+
+### (c)
+```{r, echo = FALSE}
+A = aggregate(Steps ~ Day, data = ErinsFitbit, sd)
+names(A) = "sd"
+A
+```
+
+### (d)
+```{r, echo = FALSE}
+B = aggregate(Sleep ~ Day, data = ErinsFitbit, sd)
+names(B) = "sd"
+B
+```
+
+### Problem III
+### (a)
+```{r, echo = FALSE}
+fivenum(ErinsFitbit$Miles)
+```
+#this function returns minimum number, lower-hinge, median, upper-hinge, maximum number of a dataset.
+
+### (b)
+```{r, echo = FALSE}
+table(ErinsFitbit$Day)
+```
+#this table shows the counts at each combination of factor levels of each day of a week 
+
+### (c)
+```{r, echo = FALSE}
+Y = aggregate(Sleep ~ Month, data = ErinsFitbit, median)
+names(Y) = "median"
+Y
+```
+
+### (d)
+```{r, echo = FALSE}
+C = aggregate(Miles ~ Month, data = ErinsFitbit, median)
+names(C) = "median"
+C
+```
+
+### Problem IV
+### (a)
+```{r, echo = FALSE}
+boxplot(Steps ~ Day, data = ErinsFitbit)
+```
+#Sunday is less active than the rest because its range is the shortest and its maximum number is less than others'.
+
+### (b)
+```{r, echo = FALSE}
+boxplot(Sleep ~ Day, data = ErinsFitbit)
+```
+#Monday seems like to be less restful than the rest because it has the longest range among the others.
+### (c)
+```{r, echo = FALSE}
+
+```
+
+#There is one outlier on Saturday and Wednesday respectively, and there are three outliers on Sunday. 
+
+### (d)
+```{r, echo = FALSE}
+
+```
+#There is one outlier on Monday, Thursday, Saturday, and Sunday, respectively. There are two outliers on Friday.
+
+## APPENDIX OF CODE
+ErinsFitbit <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/ErinsFitbit.csv")
+names(ErinsFitbit)
+rownames(ErinsFitbit)
+summary(ErinsFitbit)
+#It gives the data analysis for numerical columns, while gives the numbers of the times each category appears for categorical columns.
+mean(ErinsFitbit$Steps)
+the.mean = mean(ErinsFitbit$Steps)
+Z = aggregate(Steps ~ Day, data = ErinsFitbit, mean)
+names(Z) = "mean"
+Z
+X = aggregate(Sleep ~ Day, data = ErinsFitbit, mean)
+names(X) = "mean"
+X
+A = aggregate(Steps ~ Day, data = ErinsFitbit, sd)
+names(A) = "sd"
+A
+B = aggregate(Sleep ~ Day, data = ErinsFitbit, sd)
+names(B) = "sd"
+B
+fivenum(ErinsFitbit$Miles)
+#this function returns minimum number, lower-hinge, median, upper-hinge, maximum number of a dataset.
+table(ErinsFitbit$Day)
+#this table shows the counts at each combination of factor levels of each day of a week 
+Y = aggregate(Sleep ~ Month, data = ErinsFitbit, median)
+names(Y) = "median"
+Y
+C = aggregate(Miles ~ Month, data = ErinsFitbit, median)
+names(C) = "median"
+C
+boxplot(Steps ~ Day, data = ErinsFitbit)
+#Sunday is less active than the rest because its range is the shortest and its maximum number is less than others'.
+boxplot(Sleep ~ Day, data = ErinsFitbit)
+#Monday seems like to be less restful than the rest because it has the longest range among the others.
+#There is one outlier on Saturday and Wednesday respectively, and there are three outliers on Sunday. 
+#There is one outlier on Monday, Thursday, Saturday, and Sunday, respectively. There are two outliers on Friday.
+#Put all your code used above here. 
+```

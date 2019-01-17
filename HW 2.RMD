@@ -1,0 +1,227 @@
+---
+title: "STA 32 - HW 2"
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+### Problem I
+
+### (a)
+```{r, echo = FALSE}
+ErinsFitbit <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/Dataset/ErinsFitbit.csv")
+length(ErinsFitbit$Day[ErinsFitbit$Steps > 10000])
+```
+
+### (b)
+```{r, echo = FALSE}
+mean(ErinsFitbit$Steps[ErinsFitbit$Sleep < 7])
+```
+
+### (c)
+```{r, echo = FALSE}
+length(ErinsFitbit$Day[ErinsFitbit$Miles > 5])
+```
+
+### (d)
+```{r, echo = FALSE}
+mean(ErinsFitbit$Miles[ErinsFitbit$Sleep > 8])
+```
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+X = 1:100
+the.mean = mean(X)
+the.sd = sd(X)
+within.one = (X - the.mean)/the.sd
+sd(within.one)
+```
+
+### (b)
+```{r, echo = FALSE}
+X = 1:100
+the.mean = mean(X)
+the.sd = sd(X)
+v.return = c(the.mean - 2*the.sd,the.mean + 2*the.sd)
+names(v.return) = c("lower","upper")
+v.return
+```
+
+
+### (c)
+```{r, echo = FALSE}
+X = c(1:100,200,300)
+the.mean = mean(X)
+the.sd = sd(X)
+the.secondmean = mean(X[X <= the.mean + 3*the.sd])
+the.secondmean
+```
+
+### Problem III
+### (a)
+```{r, echo = FALSE}
+sample(c("Head","Tail"),20,replace = TRUE, prob = c(1/2,1/2))
+one.flip = sample(c("Head","Tail"),20,replace = TRUE, prob = c(1/2,1/2))
+#Prob of a "Head"
+sum(one.flip == "Head")/length(one.flip)
+```
+
+### (b)
+```{r, echo = FALSE}
+all.n = c(10, 100, 1000, 10000, 100000)
+many.flips = sapply(all.n, function(n){
+  one.flip = sample(c("Head","Tail"),n,replace = TRUE, prob = c(1/2,1/2))
+  #Prob of a "Head"
+  A = sum(one.flip == "Head")/length(one.flip)
+  #Prob of a "Tail"
+  B = sum(one.flip == "Tail")/length(one.flip)
+  results = c(A,B)
+  names(results) = c("Head","Tail")
+  return(results)
+})
+colnames(many.flips) = paste("n = ",all.n)
+many.flips
+```
+
+### (c)
+```{r, echo = FALSE}
+all.n = c(10, 100, 1000, 10000, 100000)
+many.flips = sapply(all.n, function(n){
+one.flip = sample(c("Head","Tail"),n,replace = TRUE, prob = c(1/2,1/2))
+#Prob of a "Head"
+A = sum(one.flip == "Head")/length(one.flip)
+#Prob of a "Tail"
+B = sum(one.flip == "Tail")/length(one.flip)
+#Error of Head
+C = abs(0.50 - A)
+#Error of Tail
+D = abs(0.50 - B)
+results = c(C,D)
+names(results) = c("Error of Head","Error of Tail")
+return(results)
+})
+colnames(many.flips) = paste("n = ",all.n)
+many.flips
+```
+
+### (d)
+```{r, echo = TRUE}
+#The error decreases as n increases because the probability gets closer and closer to the estimated probability which is 1/2.
+
+```
+
+### Problem IV
+### (a)
+```{r, echo = FALSE}
+one.draw = sample(as.character(1:7),7, replace = FALSE)
+one.draw
+```
+
+### (b)
+```{r, echo = FALSE}
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+sum(many.draws[1,] == "1")
+```
+
+### (c)
+```{r, echo = FALSE}
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+sum(many.draws[1,] == "3" & many.draws[7,] == "7")/ncol(many.draws)
+```
+
+### (d)
+```{r, echo = FALSE}
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+one.order = sapply(1:10000,function(i){
+  paste(many.draws[,i],collapse = "")
+})
+length(unique(one.order))
+```
+
+
+## APPENDIX OF CODE
+```
+ErinsFitbit <- read.csv("C:/Users/jinhangshi2008/Desktop/STA32/Dataset/ErinsFitbit.csv")
+length(ErinsFitbit$Day[ErinsFitbit$Steps > 10000])
+mean(ErinsFitbit$Steps[ErinsFitbit$Sleep < 7])
+length(ErinsFitbit$Day[ErinsFitbit$Miles > 5])
+mean(ErinsFitbit$Miles[ErinsFitbit$Sleep > 8])
+X = 1:100
+the.mean = mean(X)
+the.sd = sd(X)
+within.one = (X - the.mean)/the.sd
+sd(within.one)
+X = 1:100
+the.mean = mean(X)
+the.sd = sd(X)
+v.return = c(the.mean - 2*the.sd,the.mean + 2*the.sd)
+names(v.return) = c("lower","upper")
+v.return
+X = c(1:100,200,300)
+the.mean = mean(X)
+the.sd = sd(X)
+the.secondmean = mean(X[X <= the.mean + 3*the.sd])
+the.secondmean
+sample(c("Head","Tail"),20,replace = TRUE, prob = c(1/2,1/2)
+one.flip = sample(c("Head","Tail"),20,replace = TRUE, prob = c(1/2,1/2))
+#Prob of a "Head"
+sum(one.flip == "Head")/length(one.flip)
+all.n = c(10, 100, 1000, 10000, 100000)
+many.flips = sapply(all.n, function(n){
+  one.flip = sample(c("Head","Tail"),n,replace = TRUE, prob = c(1/2,1/2))
+  #Prob of a "Head"
+  A = sum(one.flip == "Head")/length(one.flip)
+  #Prob of a "Tail"
+  B = sum(one.flip == "Tail")/length(one.flip)
+  results = c(A,B)
+  names(results) = c("Head","Tail")
+  return(results)
+})
+colnames(many.flips) = paste("n = ",all.n)
+many.flips
+all.n = c(10, 100, 1000, 10000, 100000)
+many.flips = sapply(all.n, function(n){
+  one.flip = sample(c("Head","Tail"),n,replace = TRUE, prob = c(1/2,1/2))
+  #Prob of a "Head"
+  A = sum(one.flip == "Head")/length(one.flip)
+  #Prob of a "Tail"
+  B = sum(one.flip == "Tail")/length(one.flip)
+  #Error of Head
+  C = abs(0.50 - A)
+  #Error of Tail
+  D = abs(0.50 - B)
+  results = c(C,D)
+  names(results) = c("Error of Head","Error of Tail")
+  return(results)
+})
+colnames(many.flips) = paste("n = ",all.n)
+many.flips
+#The error decreases as n increases because the probability gets closer and closer to the estimated probability which is 1/2.
+one.draw = sample(as.character(1:7),7, replace = FALSE)
+one.draw
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+sum(many.draws[1,] == "1")
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+sum(many.draws[1,] == "3" & many.draws[7,] == "7")/ncol(many.draws)
+many.draws = sapply(1:100000, function(i){
+  one.draw = sample(as.character(1:7),7, replace = FALSE)
+})
+paste(many.draws[,1],collapse = "")
+one.order = sapply(1:10000,function(i){
+  paste(many.draws[,i],collapse = "")
+})
+length(unique(one.order))
+```
+
+#Put all your code used above here. 
+```

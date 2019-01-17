@@ -1,0 +1,279 @@
+---
+title: "STA 32 - HW6 "
+author: "HANGSHI JIN"
+output: html_document
+---
+  
+### Problem I
+### (a)
+```{r, echo = FALSE}
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+A = sample(normal.pop, 15,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 15-1)
+the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+```
+
+### (b)
+```{r, echo = FALSE}
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(normal.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+```
+
+### (c)
+```{r, echo = FALSE}
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(normal.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+```
+
+### (d)
+```{r, echo = TRUE}
+#Yes, because the coverage probability is approximately 95%
+```
+
+### Problem II
+### (a)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+A = sample(exp.pop, 15,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 15-1)
+the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+```
+
+### (b)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+```
+
+### (c)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+```
+
+### (d)
+```{r, echo = TRUE}
+#No, because the coverage probability is below 95%.
+```
+
+### Problem III
+### (a)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+A = sample(exp.pop, 60,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 60-1)
+the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+```
+
+### (b)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 60,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 60-1)
+  the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+```
+
+### (c)
+```{r, echo = FALSE}
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 60,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 60-1)
+  the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+```
+
+### (d)
+```{r, echo = TRUE}
+#No, because the coverage probability is below 95%
+```
+
+## APPENDIX OF CODE
+```
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+A = sample(normal.pop, 15,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 15-1)
+the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(normal.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+mu = 5
+normal.pop = rnorm(1000000,mu, sd = 10)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(normal.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+A = sample(exp.pop, 15,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 15-1)
+the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 15,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 15-1)
+  the.upper = the.mean + (the.qt*the.sd)/(15)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(15)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+A = sample(exp.pop, 60,replace = FALSE)
+the.mean = mean(A)
+the.sd = sd(A)
+the.qt = qt(1-0.05/2, 60-1)
+the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+lies.in = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+lies.in
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 60,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 60-1)
+  the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+table(many.lies.in)
+mu = 5
+exp.pop = rexp(1000000,1/mu)
+many.lies.in = sapply(1:10000, function(i){
+  A = sample(exp.pop, 60,replace = FALSE)
+  the.mean = mean(A)
+  the.sd = sd(A)
+  the.qt = qt(1-0.05/2, 60-1)
+  the.upper = the.mean + (the.qt*the.sd)/(60)^(1/2)
+  the.lower = the.mean - (the.qt*the.sd)/(60)^(1/2)
+  B = ifelse(mu <= the.upper & mu >= the.lower, TRUE, FALSE)
+  return(B)
+})
+sum(many.lies.in == "TRUE")/length(many.lies.in)
+```
